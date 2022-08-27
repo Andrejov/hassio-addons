@@ -38,6 +38,7 @@ class FakeDNS(object):
         # self.udps = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         # self.last_domain = config['fakedns']['initial_domain']
         # self.started = False
+        pass
 
     def start(self):
         # self.started = True
@@ -45,11 +46,13 @@ class FakeDNS(object):
         # self.udps.bind(('', 53))
         # thread = threading.Thread(target=self.loop)
         # thread.start()
+        pass
 
     def close(self):
         # self.log.info('[FakeDNS] Finalize')
         # self.udps.close()
         # self.started = False
+        pass
 
     def loop(self):
         # while self.started:
@@ -61,6 +64,7 @@ class FakeDNS(object):
         #         self.log.info('[FakeDNS] Response: %s -> %s' % (p.domain, self.ip))
         #     except socket.timeout:
         #         pass
+        pass
 
 
 if __name__ == '__main__':
