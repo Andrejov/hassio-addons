@@ -32,35 +32,35 @@ class DNSQuery:
 class FakeDNS(object):
 
     def __init__(self, log, config):
-        self.log = log
-        self.ip = config['fakedns']['target_ip']
-        self.log.info('[FakeDNS] Entry:: dom.query. 60 IN A %s' % self.ip)
-        self.udps = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.last_domain = config['fakedns']['initial_domain']
-        self.started = False
+        # self.log = log
+        # self.ip = config['fakedns']['target_ip']
+        # self.log.info('[FakeDNS] Entry:: dom.query. 60 IN A %s' % self.ip)
+        # self.udps = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # self.last_domain = config['fakedns']['initial_domain']
+        # self.started = False
 
     def start(self):
-        self.started = True
-        self.udps.settimeout(1)
-        self.udps.bind(('', 53))
-        thread = threading.Thread(target=self.loop)
-        thread.start()
+        # self.started = True
+        # self.udps.settimeout(1)
+        # self.udps.bind(('', 53))
+        # thread = threading.Thread(target=self.loop)
+        # thread.start()
 
     def close(self):
-        self.log.info('[FakeDNS] Finalize')
-        self.udps.close()
-        self.started = False
+        # self.log.info('[FakeDNS] Finalize')
+        # self.udps.close()
+        # self.started = False
 
     def loop(self):
-        while self.started:
-            try:
-                data, addr = self.udps.recvfrom(1024)
-                p = DNSQuery(data)
-                self.udps.sendto(p.response(self.ip), addr)
-                self.last_domain = p.domain
-                self.log.info('[FakeDNS] Response: %s -> %s' % (p.domain, self.ip))
-            except socket.timeout:
-                pass
+        # while self.started:
+        #     try:
+        #         data, addr = self.udps.recvfrom(1024)
+        #         p = DNSQuery(data)
+        #         self.udps.sendto(p.response(self.ip), addr)
+        #         self.last_domain = p.domain
+        #         self.log.info('[FakeDNS] Response: %s -> %s' % (p.domain, self.ip))
+        #     except socket.timeout:
+        #         pass
 
 
 if __name__ == '__main__':
