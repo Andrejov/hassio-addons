@@ -52,7 +52,7 @@ def main():
     pp = pprint.PrettyPrinter()
     logger.debug("[Inverter] Config: %s" % pp.pformat(config))
 
-    fake_dns = FakeDNS.FakeDNS(logger, config)
+    # fake_dns = FakeDNS.FakeDNS(logger, config)
     mqtt_client = MqttClient.MqttClient(logger, config)
     tcp_proxy = TcpProxy.TcpProxy(config, logger, fake_dns, create_callback(logger, mqtt_client))
     try:
