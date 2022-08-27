@@ -18,8 +18,15 @@ def create_callback(log, mqtt_client):
             msg = InverterMsg.InverterMsg(data)
             dict = msg.dict()
             pp = pprint.PrettyPrinter()
-            log.debug("[Inverter] Publishing to mqtt: %s" % pp.pformat(dict))
-            mqtt_client.publish(json.dumps(dict, ensure_ascii=False))
+
+            freq = dict["f_ac"]
+
+            if freq > 40 and freq < 60:
+                log.debug("[Inverter] Publishing to mqtt: %s" % pp.pformat(dict))
+                mqtt_client.publish(json.dumps(dict, ensure_ascii=False))
+            else:
+                log.debug("[Inverter] Skipping mqtt public due to weird data: %s" % pp.pformat(dict))
+
     return callback
 
 
